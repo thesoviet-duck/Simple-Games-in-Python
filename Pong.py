@@ -7,13 +7,13 @@ import random
 import subprocess
 
 # Provide the path to the audio file you want to play
-bounce_sound = 'bounce sound.mp3'
-score_sound = 'score sound.mp3'
-win_sound = 'win sound.mp3'
+bounce_sound = "bounce sound.wav"
+score_sound = "score sound.mp3"
+win_sound = "win sound.mp3"
 
 # Basic Stuff
 wn = turtle.Screen()
-wn.title("Pong by M.Sibtain 7-C")
+wn.title("Pong With a lil Twist")
 wn.bgcolor("white")
 wn.setup(width=1280, height=800)
 wn.tracer(0)
@@ -82,28 +82,27 @@ def update_score_time():
 # Function
 def paddle_a_up():
     y = paddle_a.ycor()
-    if y < 313:
+    if y < 299.5:
         y += paddle_speed
     paddle_a.sety(y)
 
 def paddle_a_down():
     y = paddle_a.ycor()
-    if y > -300:
+    if y > -299.5:
         y -= paddle_speed
     paddle_a.sety(y)
 
 def paddle_b_up():
     y = paddle_b.ycor()
-    if y < 313:
+    if y < 299.5:
         y += paddle_speed
     paddle_b.sety(y)
 
 def paddle_b_down():
     y = paddle_b.ycor()
-    if y > -300:
+    if y > -299.5:
         y -= paddle_speed
     paddle_b.sety(y)
-
 
 def change_ball_color():
     ball.color(random.choice(color_list))
@@ -121,6 +120,8 @@ def play_score():
 def play_win():
     play_audio_file(win_sound)
 
+def exit_the_game():
+    os._exit(os.EX_OK)
 
 # Personalizing the game for the user
 difficulty = turtle.textinput("Select Difficulty", "1 for easy,  2 for medium, 3 for hard."
@@ -146,42 +147,43 @@ else:
     paddle_speed = 35
 
 
-color = turtle.textinput("Select your Color Pattern",
-"1 for default, 2 for red white, 3 for Portugal Edition or Press any button for white black")
+color = turtle.textinput("Select your Color Pattern\n",
+"1 for default,\n 2 for red white,\n 3 for white black")
 
 def set_color(paddle_a_color, paddle_b_color, ball_color, bg_color, textcolor="white"):
-    pen.color = textcolor
+    pen.color(textcolor)
     paddle_a.color(paddle_a_color)
     paddle_b.color(paddle_b_color)
     ball.color(ball_color)
     wn.bgcolor(bg_color)
 
 if color == "1":
-    set_color("#d6d4d4", "#d6d4d4", "#d6d4d4", "#131313", "white")
+    set_color("#d6d4d4", "#d6d4d4", "#d6d4d4", "#131313")
 
 elif color == "2":
-    set_color("#f5f0f0", "#f5f0f0", "#f5f0f0", "#e33232", "white")
-
-elif color == "3":
-    set_color("#0940e6", "#0940e6", "#d7d9de", "#f2d00f", "yellow")
+    set_color("#f5f0f0", "#f5f0f0", "#f5f0f0", "#e33232")
 
 else:
     set_color("black", "black", "black", "white", "black")
 
 # Keyboard binding
 wn.listen()
+
+wn.onkeypress(exit_the_game, "Escape")
+
 wn.onkeypress(paddle_a_up, "w")
 wn.onkeypress(paddle_a_down, "s")
 
 wn.onkeypress(paddle_b_up, "Up")
 wn.onkeypress(paddle_b_down, "Down")
 
-# starting the score and time
+# Activate the timer
 update_score_time()
 
 # Main game loop
 while True:
     wn.update()
+
     # move the ball
     ball.setx(ball.xcor() + ball.dx)
     ball.sety(ball.ycor() + ball.dy)
@@ -199,21 +201,23 @@ while True:
         change_ball_color()
         play_bounce()
 
+    # Give a point to Player A
     elif ball.xcor() > 630:
         ball.goto(0, 0)
         ball.dx *= -1
         score_a += 1
         pen.clear()
-        pen.write("Player A: {}  Player B: {}".format(score_a, score_b), align="center", font=("Arial", 24, "normal"))
+        pen.write(f"Player A: {score_a}  Player B: {score_b}  Time: {minutes:02}:{seconds:02}", align="center", font=("Arial", 24, "bold"))
         change_ball_color()
         play_score()
 
+    # Give a point to Player B
     elif ball.xcor() < -630:
         ball.goto(0, 0)
         ball.dx *= -1
         score_b += 1
         pen.clear()
-        pen.write("Player A: {}  Player B: {}".format(score_a, score_b), align="center", font=("Arial", 24, "normal"))
+        pen.write(f"Player A: {score_a}  Player B: {score_b}  Time: {minutes:02}:{seconds:02}", align="center", font=("Arial", 24, "bold"))
         change_ball_color()
         play_score()
 
