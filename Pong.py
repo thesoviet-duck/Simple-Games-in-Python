@@ -288,6 +288,7 @@ while True:
         ball.goto(0, 0)
         ball.dx *= -1
         score_a += 1
+        flash_score("A")
         pen.clear()
         pen.goto(0, 345)
         pen.write(f"Time: {minutes:02}:{seconds:02}", align="center", font=("Arial", 30, "bold"))
@@ -296,7 +297,6 @@ while True:
         pen.goto(text_pos_2, text_pos_3)
         pen.write(f"Player B: {score_b}", align="right", font=("Arial", 34, "bold"))
         change_ball_color()
-        flash_score("A")
         play_score()
 
     # Give a point to Player B
@@ -304,6 +304,7 @@ while True:
         ball.goto(0, 0)
         ball.dx *= -1
         score_b += 1
+        flash_score("B")
         pen.clear()
         pen.goto(0, 345)
         pen.write(f"Time: {minutes:02}:{seconds:02}", align="center", font=("Arial", 30, "bold"))
@@ -312,7 +313,6 @@ while True:
         pen.goto(text_pos_2, text_pos_3)
         pen.write(f"Player B: {score_b}", align="right", font=("Arial", 34, "bold"))
         change_ball_color()
-        flash_score("B")
         play_score()
 
     # Paddle and ball collisions
