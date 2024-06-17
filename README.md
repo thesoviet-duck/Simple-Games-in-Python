@@ -6,4 +6,4 @@ Hello it's me @Not-Noot-Noot, The rules for this repo are very complicated:<br /
     <br/>"Reading is how we learn and Writing is how we understand uniquely"<br />
     	- Me / Unknown
 
-Also here is some more information: https://www.youtube.com/watch?v=dQw4w9WgXcQ 
+Also here is some more information: https://www.youtube.com/watch?v=dQw4w9WgXcQ also checkout some useful things at https://github.com/Not-Noot-Noot/useful-stuff
