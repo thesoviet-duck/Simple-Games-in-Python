@@ -1,5 +1,3 @@
-Hello, it's me @Not-Noot-Noot. The Rules are:
-
 Hello it's me @Not-Noot-Noot, The rules for this repo are very complicated:<br />
 <br />
 1- Rule one, you can use my code I don't mind :D <br />
